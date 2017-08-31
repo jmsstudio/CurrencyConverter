@@ -8,8 +8,10 @@ const ANIMATION_DURATION = 250;
 class Logo extends React.Component {
   constructor(props) {
     super(props);
-    this.containerImageWidth = new Animated.Value(styles.$largeContainerSize);
-    this.imageWidth = new Animated.Value(styles.$largeImageSize);
+    this.state = {
+      containerImageWidth: new Animated.Value(styles.$largeContainerSize),
+      imageWidth: new Animated.Value(styles.$largeImageSize),
+    };
   }
 
   componentDidMount() {
@@ -32,11 +34,11 @@ class Logo extends React.Component {
 
   keyboardShow() {
     Animated.parallel([
-      Animated.timing(this.containerImageWidth, {
+      Animated.timing(this.state.containerImageWidth, {
         toValue: styles.$smallContainerSize,
         duration: ANIMATION_DURATION,
       }),
-      Animated.timing(this.imageWidth, {
+      Animated.timing(this.state.imageWidth, {
         toValue: styles.$smallImageSize,
         duration: ANIMATION_DURATION,
       }),
@@ -45,11 +47,11 @@ class Logo extends React.Component {
 
   keyboardHide() {
     Animated.parallel([
-      Animated.timing(this.containerImageWidth, {
+      Animated.timing(this.state.containerImageWidth, {
         toValue: styles.$largeContainerSize,
         duration: ANIMATION_DURATION,
       }),
-      Animated.timing(this.imageWidth, {
+      Animated.timing(this.state.imageWidth, {
         toValue: styles.$largeImageSize,
         duration: ANIMATION_DURATION,
       }),
