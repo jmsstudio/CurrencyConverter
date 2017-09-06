@@ -1,16 +1,22 @@
 import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-//import Home from './pages/Home';
-import CurrencyList from './pages/CurrencyList';
+import Navigator from './config/routes';
+import { AlertProvider } from './components/Alert';
 
 function index() {
-  //return <Home />;
-  return <CurrencyList />;
+  return (
+    <AlertProvider>
+      <Navigator />
+    </AlertProvider>
+  );
 }
 
 EStyleSheet.build({
-  $primaryColor: '#4F6D7A',
+  $primaryColor: '#4f6d7a',
+  $primaryOrange: '#d57a66',
+  $primaryPurple: '#9e768f',
+  $primaryGreen: '#00bd9d',
   $white: '#fff',
   $border: '#e2e2e2',
   $inputText: '#797979',

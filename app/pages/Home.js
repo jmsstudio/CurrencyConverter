@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { StatusBar, KeyboardAvoidingView } from 'react-native';
 
 import { Container } from '../components/Container';
@@ -16,12 +17,20 @@ const TEMP_CONVERSION_RATE = 3.1681;
 const TEMP_CONVERSION_DATE = new Date();
 
 class Home extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handlePressBaseCurrency = this.handlePressBaseCurrency.bind(this);
+    this.handlePressQuoteCurrency = this.handlePressQuoteCurrency.bind(this);
+    this.handleOptionsPress = this.handleOptionsPress.bind(this);
+  }
+
   handlePressBaseCurrency() {
-    console.log('base pressed');
+    this.props.navigation.navigate('CurrencyList', { title: 'Base Currency' });
   }
 
   handlePressQuoteCurrency() {
-    console.log('quote pressed');
+    this.props.navigation.navigate('CurrencyList', { title: 'Quote Currency' });
   }
 
   handleTextChange(text) {
@@ -33,7 +42,7 @@ class Home extends React.Component {
   }
 
   handleOptionsPress() {
-    console.log('pressed options');
+    this.props.navigation.navigate('Options');
   }
 
   render() {
@@ -63,11 +72,18 @@ class Home extends React.Component {
             conversionRate={TEMP_CONVERSION_RATE}
           />
 
-          <ClearButton text="Reverse currencies" onPress={this.handleSwapCurrency} />
+          <ClearButton
+            text="Reverse currencies"
+            onPress={this.handleSwapCurrency}
+          />
         </KeyboardAvoidingView>
       </Container>
     );
   }
 }
+
+Home.propTypes = {
+  navigation: PropTypes.object,
+};
 
 export default Home;
