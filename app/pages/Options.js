@@ -23,7 +23,7 @@ class Options extends React.Component {
   }
 
   handleApiPress() {
-    Linking.openURL('htasdfasdtp://fixer.io').catch(() =>
+    Linking.openURL('http://fixer.io').catch(() =>
       this.props.alertWithType('error', 'Error', 'Site cannot be opened')
     );
   }
