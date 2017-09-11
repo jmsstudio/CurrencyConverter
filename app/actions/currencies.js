@@ -13,4 +13,23 @@ function changeCurrencyAmont(amount) {
   };
 }
 
-export { swapCurrency, changeCurrencyAmont };
+function changeBaseCurrency(currency) {
+  return {
+    type: constants.CHANGE_BASE_CURRENCY,
+    currency,
+  };
+}
+
+function changeQuoteCurrency(currency) {
+  return {
+    type: constants.CHANGE_QUOTE_CURRENCY,
+    currency,
+  };
+}
+
+export {
+  swapCurrency,
+  changeCurrencyAmont,
+  changeBaseCurrency,
+  changeQuoteCurrency,
+};
