@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { View, Text, Keyboard, Animated, Platform } from 'react-native';
 
 import styles from './styles';
@@ -26,8 +27,14 @@ class Logo extends React.Component {
       hideListener = 'keyboardDidHide';
     }
 
-    this.keyboardShowListener = Keyboard.addListener(showListener, this.keyboardShow);
-    this.keyboardHideListener = Keyboard.addListener(hideListener, this.keyboardHide);
+    this.keyboardShowListener = Keyboard.addListener(
+      showListener,
+      this.keyboardShow
+    );
+    this.keyboardHideListener = Keyboard.addListener(
+      hideListener,
+      this.keyboardHide
+    );
   }
 
   componentWillUnMount() {
@@ -75,17 +82,30 @@ class Logo extends React.Component {
       {
         width: this.state.imageWidth,
       },
+      this.props.tintColor ? { tintColor: this.props.tintColor } : null,
     ];
 
     return (
       <View style={styles.container}>
-        <Animated.Image resizeMode="contain" style={containerImageStyles} source={require('./images/background.png')}>
-          <Animated.Image resizeMode="contain" style={imageStyles} source={require('./images/logo.png')} />
+        <Animated.Image
+          resizeMode="contain"
+          style={containerImageStyles}
+          source={require('./images/background.png')}
+        >
+          <Animated.Image
+            resizeMode="contain"
+            style={imageStyles}
+            source={require('./images/logo.png')}
+          />
         </Animated.Image>
         <Text style={styles.text}>Currency Converter</Text>
       </View>
     );
   }
 }
+
+Logo.propTypes = {
+  tintColor: PropTypes.string,
+};
 
 export default Logo;

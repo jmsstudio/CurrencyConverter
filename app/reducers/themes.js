@@ -1,7 +1,7 @@
 import constants from '../config/constants';
 
 const initialState = {
-  primaryColor: '#f6d7a',
+  primaryColor: '#4f6d7a',
 };
 
 function reducer(state = initialState, action) {

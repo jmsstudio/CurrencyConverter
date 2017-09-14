@@ -56,23 +56,25 @@ class Home extends React.Component {
     }
 
     return (
-      <Container>
+      <Container backgroundColor={this.props.primaryColor}>
         <StatusBar translucent={false} barStyle="light-content" />
         <Header onPress={this.handleOptionsPress} />
         <KeyboardAvoidingView behavior="padding">
-          <Logo />
+          <Logo tintColor={this.props.primaryColor} />
           <InputWithButton
             buttonText={this.props.baseCurrency}
             onPress={this.handlePressBaseCurrency}
             defaultValue={this.props.amount.toString()}
             keyboardType="numeric"
             onChangeText={this.handleTextChange}
+            textColor={this.props.primaryColor}
           />
           <InputWithButton
             buttonText={this.props.quoteCurrency}
             onPress={this.handlePressQuoteCurrency}
             editable={false}
             defaultValue={quotePrice}
+            textColor={this.props.primaryColor}
           />
           <LastConverted
             base={this.props.baseCurrency}
@@ -100,6 +102,7 @@ Home.propTypes = {
   conversionRate: PropTypes.number,
   isFetching: PropTypes.bool,
   conversionDate: PropTypes.object,
+  primaryColor: PropTypes.string,
 };
 
 function mapStateToProps(state) {
@@ -121,6 +124,7 @@ function mapStateToProps(state) {
     conversionRate,
     isFetching: conversionSelector.isFetching,
     conversionDate,
+    primaryColor: state.themes.primaryColor,
   };
 }
 

@@ -41,6 +41,7 @@ class CurrencyList extends React.Component {
               text={item}
               selected={item === this.props.selectedCurrency}
               onPress={() => this._handlePress(item)}
+              iconBackground={this.props.primaryColor}
             />
           )}
           keyExtractor={item => item}
@@ -54,6 +55,7 @@ class CurrencyList extends React.Component {
 CurrencyList.propTypes = {
   navigation: PropTypes.object,
   dispatch: PropTypes.func,
+  primaryColor: PropTypes.string,
 };
 
 function mapStateToProps(state, props) {
@@ -64,6 +66,7 @@ function mapStateToProps(state, props) {
     selectedCurrency: isBaseCurrency
       ? state.currencies.baseCurrency
       : state.currencies.quoteCurrency,
+    primaryColor: state.themes.primaryColor,
   };
 }
 
