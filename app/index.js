@@ -1,16 +1,31 @@
 import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Provider } from 'react-redux';
+import { Provider, connect } from 'react-redux';
+import { addNavigationHelpers } from 'react-navigation';
 
 import Navigator from './config/routes';
 import { AlertProvider } from './components/Alert';
 import store from './config/store';
 
+function App({ dispatch, navigation }) {
+  return (
+    <Navigator
+      navigation={addNavigationHelpers({ dispatch, state: navigation })}
+    />
+  );
+}
+
+function mapStateToProps(state) {
+  return { navigation: state.navigation };
+}
+
+const AppWithNavigation = connect(mapStateToProps)(App);
+
 function index() {
   return (
     <Provider store={store}>
       <AlertProvider>
-        <Navigator />
+        <AppWithNavigation />
       </AlertProvider>
     </Provider>
   );
