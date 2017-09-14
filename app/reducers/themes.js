@@ -6,7 +6,7 @@ const initialState = {
 
 function reducer(state = initialState, action) {
   let newState = null;
-  switch (action) {
+  switch (action.type) {
     case constants.CHANGE_PRIMARY_COLOR:
       newState = { ...state, primaryColor: action.color };
       break;
