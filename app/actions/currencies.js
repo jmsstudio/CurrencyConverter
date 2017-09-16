@@ -27,7 +27,12 @@ function changeQuoteCurrency(currency) {
   };
 }
 
+function getInitialConversion() {
+  return { type: constants.GET_INITIAL_CONVERSION };
+}
+
 export {
+  getInitialConversion,
   swapCurrency,
   changeCurrencyAmont,
   changeBaseCurrency,
